@@ -18,7 +18,7 @@ class BookSeeder extends Seeder
         $faker = Factory::create();
         foreach(range(1,20) as $index){
             DB::table('books')->insert([
-                'naslov' => $faker->sentence(3),
+                'naslov' => $faker->sentence(2),
                 'ime_autora' => $faker->sentence(2),
                 'izdavac' => $faker->sentence(1),
                 'kategorija' =>$faker->sentence(1),

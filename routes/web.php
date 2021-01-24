@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layout.app');
-});
+Route::get('/', [PagesController::class,'index']);
+Route::get('/books', [PagesController::class,'books'])->name('show_books');
+Route::post('/books',[PagesController::class,'books']);
 
 Auth::routes();
 
