@@ -15,7 +15,7 @@ class CreateRentBooksTable extends Migration
     {
         Schema::create('rent_books', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_user');
+            $table->integer('user_id');
             $table->integer('book_id');
             $table->timestamp('rent_date')->useCurrent();
             $table->timestamp('return_book')->nullable();

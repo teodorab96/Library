@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
-
+use App\Http\Controllers\BooksController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,9 +15,10 @@ use App\Http\Controllers\PagesController;
 */
 
 Route::get('/', [PagesController::class,'index']);
-Route::get('/books', [PagesController::class,'books'])->name('show_books');
+Route::get('/books', [PagesController::class,'books'])->name('books');
 Route::post('/books',[PagesController::class,'books']);
-
+Route::get('/rentBook/{id}',[BooksController::class,'rent']);
+Route::get('/history',[BooksController::class,'history']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
