@@ -64,57 +64,20 @@ class LibrarianController extends Controller
                 'created_at' => now(),
             ]);
             return redirect('/allBooks')->with('success','Knjiga rezervisana');
-            }
-            else{
+        }
+        else{
                 return redirect('/allBooks')->with('error','Greška prilikom rezervacije knjige');
-            }
-        /** 
-        * 
-        */
+        }
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    /**Prikaz svih knjiga za iznajmljivanje */
+    public function requestBook(){
+        $books = Book::orderBy('status')->paginate(10);
+        return view('librarian.requestedBook')->with('books',$books);
+    } 
+    /*Odobravanje zahtjeva za izdavanje knjige */
+    public function approveRentBook($id){
+        DB::table('books')->where('id', $id)->update(['status' => 'IZDATA']); 
+        DB::table('rent_books')->where('book_id',$id)->update(['approved' => 1]);
+        return redirect('/requestBook')->with('success','Odobreno je izdavanje knjige');
     }
 }

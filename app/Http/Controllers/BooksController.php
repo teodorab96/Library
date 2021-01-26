@@ -14,8 +14,7 @@ class BooksController extends Controller
     {
         $this->middleware('auth');
     }
-    /**Izdavanje knjige knjige
-     */
+    /**Izdavanje knjige*/
     public function rent($id){
         $book = Book::find($id);
         if($book->status =='SLOBODNA'){
@@ -25,11 +24,10 @@ class BooksController extends Controller
                 'user_id' => auth()->user()->id,
                 'book_id'=> $id,
                 'rent_date' => $dateNow,
-                'return_book' => $rentDate
+                'return_book' => $rentDate,
             ]);
-            DB::table('books')->where('id', $id)->update(['status' => 'IZDATA']); 
             $displayRentDate =Carbon::createFromFormat('Y-m-d H:i:s', $rentDate)->format('d-m-Y');
-            return redirect('/books')->with('success','Knjiga je iznajmljena')->with('returnDate',$displayRentDate);  
+            return redirect('/books')->with('success','Zahtjev za iznajmljivanje poslat bibliotekaru')->with('returnDate',$displayRentDate);  
         }
         else{
             return redirect('/books')->with('error','Knjiga nije dostupna');

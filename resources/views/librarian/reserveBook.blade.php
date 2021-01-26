@@ -22,7 +22,7 @@
                         @endif
                       </select>
                     </div>
-                    <button type="submit" class="btn btn-success">Submit</button>
+                    <button type="submit" class="btn btn-success">Rezerviši</button>
                   </form>
             </div>
         </div>

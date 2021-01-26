@@ -11,7 +11,7 @@ class Book extends Model
     use HasFactory;
     public function users()
     {
-        return $this->belongsToMany(User::class,'rent_books','book_id','user_id')->withPivot('rent_date','return_book');
+        return $this->belongsToMany(User::class,'rent_books','book_id','user_id')->withPivot('rent_date','return_book','approved');
         
     }
     public function usersReservation()

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddApproveToRent extends Migration
+class AddRentApproval extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddApproveToRent extends Migration
      */
     public function up()
     {
-        Schema::table('books', function (Blueprint $table) {
-            $table ->integer('approved_rent')->default(0);
+        Schema::table('rent_books', function(Blueprint $table){
+            $table ->integer('approved')->default(0);
         });
     }
 
@@ -25,8 +25,8 @@ class AddApproveToRent extends Migration
      */
     public function down()
     {
-        Schema::table('books', function (Blueprint $table) {
-            $table->dropColumn('approved_rent');
+        Schema::table('rent_books', function(Blueprint $table){
+            $table ->dropColumn('approved');
         });
     }
 }
