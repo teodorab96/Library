@@ -41,8 +41,7 @@ class LibrarianController extends Controller
     public function showBooks()
     {
             $books = Book::orderBy('status')->paginate(10);
-            $booksReserv = User::find(auth()->user()->id)->booksReservation()->get();
-            return view('librarian.allBooks')->with('books',$books)->with('reservation',$booksReserv);
+            return view('librarian.allBooks')->with('books',$books);
 
     }
     /**Funkcija za prikaz rezervacije knjige  */
