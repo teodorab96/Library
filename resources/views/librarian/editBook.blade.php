@@ -29,8 +29,8 @@
             <label class="form-check-label" for="user">Slobodna</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="status" id="librarian" value="IZDATA" @if($book->status=='IZDATA')checked @endif>
-            <label class="form-check-label" for="librarian">Bibliotekar</label>
+            <input class="form-check-input" type="radio" name="status" id="izdata" value="IZDATA" @if($book->status=='IZDATA')checked @endif>
+            <label class="form-check-label" for="izdata">Izdata</label>
         </div>
         <button type="submit" class="btn btn-warning" name="submit">Ažuriraj knjigu</button>
       </form>

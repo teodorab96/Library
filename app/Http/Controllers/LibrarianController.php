@@ -96,6 +96,6 @@ class LibrarianController extends Controller
     }
     public function changeBook(Request $request,$id){
         DB::table('books')->where('id', $id)->update(['status' => $request->input('status')]);
-        return redirect('librarian.editBook')->with('success','Uspješno ažuriran status knjige');
+        return redirect('editBook/'.$id)->with('success','Uspješno ažuriran status knjige');
     }
 }
