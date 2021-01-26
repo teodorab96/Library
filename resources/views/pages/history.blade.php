@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container">
+        <h1 class="text-center text-white-50 bg-secondary mb-5 mt-3">Istorija svih knjiga</h1>
     @if(count($books)>0)
     <div class="row">
         @foreach ($books as $book)

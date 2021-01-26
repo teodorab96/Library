@@ -69,7 +69,7 @@ class BooksController extends Controller
      */
     public function create()
     {
-        //
+        return view('librarian.addBook');
     }
 
     /**
@@ -80,7 +80,27 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->method()=="POST"){
+        $this->validate($request,[
+            'naslov' => 'required',
+            'autor' => 'required',
+            'izdavac' => 'required',
+            'kategorija' => 'required',
+            'stampara' => 'required'
+        ]);
+        $book = new Book;
+        $book->naslov = $request->input('naslov');
+        $book->ime_autora = $request->input('autor');
+        $book->izdavac = $request->input('izdavac');
+        $book->kategorija = $request->input('kategorija');
+        $book->stampara = $request->input('stampara');
+        $book->status = "SLOBODNA";
+        $book->save();
+        return redirect('/addBook')->with('success','Knjiga uspješno dodata');
+        }
+        else{
+            return redirect('/addBook')->with('error','Nije post metod');
+        }
     }
 
     /**

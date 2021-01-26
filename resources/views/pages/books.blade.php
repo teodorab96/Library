@@ -36,8 +36,8 @@
                             <p class="card-text col"><b>Status: </b> {{$book->status}}</p>
                         </div>
                         <div class="card-footer text-muted row">
-                                 <a class="btn btn-secondary card-text col text-center mr-1 w-75 col" href="/reserveBook/{{$book->id}}">Rezerviši</a>
-                                <a class="btn @if($book->status=='IZDATA') btn-danger @else btn-secondary @endif card-text col text center ml-1 w-50 col" href="/rentBook/{{$book->id}}">Iznajmi</a>
+                                 <a class="btn btn-secondary card-text col text-center mr-1 w-75 col" href="@auth/reserveBook/{{$book->id}} @endauth @guest /books @endguest">Rezerviši</a>
+                                <a class="btn @if($book->status=='IZDATA') btn-danger @else btn-secondary @endif card-text col text center ml-1 w-50 col" href="@auth/rentBook/{{$book->id}}@endauth @guest/books @endguest">Iznajmi</a>
                         </div>
                   </div>
                 </div>
