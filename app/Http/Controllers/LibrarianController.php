@@ -80,4 +80,22 @@ class LibrarianController extends Controller
         DB::table('rent_books')->where('book_id',$id)->update(['approved' => 1]);
         return redirect('/requestBook')->with('success','Odobreno je izdavanje knjige');
     }
+    /*Brisanje knjige */
+    public function deleteBook($id){
+        DB::table('rent_books')->where('book_id', '=', $id)->delete();
+        DB::table('reservations')->where('book_id', '=', $id)->delete();
+        $book = Book::find($id);
+        $book->delete();
+        return redirect('/allBooks')->with('success','Knjiga je uklonjena');
+    }
+
+    /*Mijenjanje knjige*/
+    public function editBook($id){
+        $book = Book::find($id);
+        return view('librarian.editBook')->with('book',$book);
+    }
+    public function changeBook(Request $request,$id){
+        DB::table('books')->where('id', $id)->update(['status' => $request->input('status')]);
+        return redirect('librarian.editBook')->with('success','Uspješno ažuriran status knjige');
+    }
 }

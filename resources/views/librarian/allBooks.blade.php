@@ -11,6 +11,7 @@
         <th scope="col">Kategorija</th>
         <th scope="col">Stampara</th>
         <th scope="col">Status</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -31,6 +32,10 @@
                 @else 
                  <h6 class="border border-danger text-danger">Izdata</h6>
                 @endif
+            </td>
+            <td>
+              <a href="/editBook/{{$book->id}}" class="btn btn-dark">Izmijeni</a>
+              <a href="/deleteBook/{{$book->id}}" class="btn btn-danger">Ukloni knjigu</a>
             </td>
           </tr>
         @endforeach

@@ -47,9 +47,11 @@ Route::get('/reserveBook/{id}',[LibrarianController::class,'reserveBook'])->midd
 Route::post('/reserveBook',[LibrarianController::class,'reserve'])->middleware('auth');
 Route::get('/requestBook',[LibrarianController::class,'requestBook'])->middleware('auth');
 Route::get('/approveRent/{id}',[LibrarianController::class,'approveRentBook'])->middleware('auth');
+Route::get('/deleteBook/{id}',[LibrarianController::class,'deleteBook'])->middleware('auth');
+Route::get('/editBook/{id}',[LibrarianController::class,'editBook'])->middleware('auth');
+Route::post('/editBook/{id}',[LibrarianController::class,'changeBook'])->middleware('auth');
 
 //Dodavanje novog zaposlenog
 Route::get('/addUser',[HomeController::class,'addUser'])->middleware('auth');
 Route::post('/addUser',[HomeController::class,'storeUser'])->middleware('auth');
-
 Auth::routes();
