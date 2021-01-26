@@ -7,9 +7,11 @@ use App\Models\Book;
 
 class PagesController extends Controller
 {
+    /**Vraća početnu stranu */
     public function index(){
         return view('pages.index');
     }
+    /**Prikaz sviih knjiga na strani knjige */
     public function books(Request $request){
         if($request->method()=="POST"){
             $this->validate($request,[
@@ -20,7 +22,11 @@ class PagesController extends Controller
         }
         else{
             $book = Book::orderBy('status')->paginate(9);
-        }
+        } 
         return view('pages.books')->with('books',$book);
     }
+        /** Prikazivanje greške ako se pokušava iznajmljivanje guest-a */
+        public function loginNeeded($id){
+            return redirect('books')->with('error','Morate biti ulogovani');
+        }
 }

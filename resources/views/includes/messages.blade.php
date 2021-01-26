@@ -2,7 +2,7 @@
     <div class="alert alert-success">
         {{session('success')}}
         @if (session('returnDate'))
-            <small>Knjiga mora biti vracena do: {{session('returnDate')}}</small>
+            i mora biti vracena do: {{session('returnDate')}}
         @endif
     </div>
 @endif

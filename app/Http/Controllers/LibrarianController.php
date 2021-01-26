@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Book;
 use Carbon\Carbon;
+use App\Models\Reservation;
+use Illuminate\Support\Facades\DB;
 
 class LibrarianController extends Controller
 {
@@ -39,7 +41,8 @@ class LibrarianController extends Controller
     public function showBooks()
     {
             $books = Book::orderBy('status')->paginate(10);
-            return view('librarian.allBooks')->with('books',$books);
+            $booksReserv = User::find(auth()->user()->id)->booksReservation()->get();
+            return view('librarian.allBooks')->with('books',$books)->with('reservation',$booksReserv);
 
     }
     /**Funkcija za prikaz rezervacije knjige  */
@@ -49,25 +52,27 @@ class LibrarianController extends Controller
         return view('librarian.reserveBook')->with('book',$book)->with('users',$users);
     }
     /**
-     * Reseracija knjige
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+     * Reseracija knjige od strane bibliotekara za odabranog korisnika*/
     public function reserve(Request $request)
     {
-        $this->validate($request,[
-            'user' => 'required',
-        ]);
+        if($request->method()=="POST"){
+            $this->validate($request,[
+                'user' => 'required',
+            ]);
+            DB::table('reservations')->insert([
+                'user_id' => $request->input('user'),
+                'book_id'=> $request->input('book'),
+                'created_at' => now(),
+            ]);
+            return redirect('/allBooks')->with('success','Knjiga rezervisana');
+            }
+            else{
+                return redirect('/allBooks')->with('error','Greška prilikom rezervacije knjige');
+            }
         /** 
-        * $rezervacija = new Reservation;
-        * $rezervacija->user_id = $request->input('user');
-        * $rezervacija->book_id = $request->input('book');
-        * $rezervacij->save();
+        * 
         */
     }
-
     /**
      * Store a newly created resource in storage.
      *

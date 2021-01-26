@@ -14,4 +14,8 @@ class Book extends Model
         return $this->belongsToMany(User::class,'rent_books','book_id','user_id')->withPivot('rent_date','return_book');
         
     }
+    public function usersReservation()
+    {
+        return $this->belongsToMany(User::class,'reservations','book_id','user_id');
+    }
 }

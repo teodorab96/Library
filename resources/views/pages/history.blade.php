@@ -18,7 +18,7 @@
                         <p class="card-text"><b>Štampara: </b> {{$book->stampara}}</p>
                     </div>
                     <div class="card-footer text-muted row">
-                        <p class="card-text"><b>Status: </b>
+                        <p class="card-text"><b>Status: </b> 
                             @if($book->status =='SLOBODNA')
                                 Vraćena
                             @else 

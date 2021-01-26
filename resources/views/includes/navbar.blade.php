@@ -29,7 +29,7 @@
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                 @else
-                    @if(session('user_type')=='user')
+                    @if(Auth::user()->type=='user')
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
@@ -50,7 +50,7 @@
                         </div>
                     </li>
                     @endif
-                    @if(session('user_type')=='librar')
+                    @if(Auth::user()->type=='librar')
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
@@ -76,7 +76,7 @@
                         </div>
                     </li>
                     @endif
-                    @if(session('user_type')=='admin')
+                    @if(Auth::user()->type=='admin')
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}

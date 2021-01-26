@@ -19,7 +19,7 @@
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
             <td>@if($user->approved_at!=NULL)
-                 <h4 class="border border-success text-success">Verifikovan</h4>
+                 <h4 class="border border-success text-success w-50 m-auto">Verifikovan</h4>
                 @else 
                  <a href="/allUsers/{{$user->id}}" class="btn btn-danger">Verifikuj</a>
                 @endif

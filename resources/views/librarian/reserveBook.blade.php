@@ -4,7 +4,7 @@
     <div class="container w-25 mt-5 mb-5 text-center">
         <div class="row">
             <div class="col">
-                <form method="POST" action="/reserveBook/{{$book->id}}">
+                <form method="POST" action="/reserveBook">
                     {{ csrf_field() }}
                     <div class="form-group">
                       <input class="form-control text-center" type="text" value="{{$book->id}}" name="book" readonly>

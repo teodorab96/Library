@@ -26,13 +26,15 @@ class UserSeeder extends Seeder
             'email_verified_at' =>now(),
             'password' => Hash::make('admin123'),
             'type'=>'admin',
-            'approved_at' => now()
+            'approved_at' => now(),
         ]);
         DB::table('users')->insert([
             'name' => 'Bibliotekar',
             'email' => 'lib@lib.com',
+            'email_verified_at' =>now(),
             'password' => Hash::make('lib123'),
-            'type' =>   'librar'
+            'type' =>   'librar',
+            'approved_at' => now()
         ]);
 
     }

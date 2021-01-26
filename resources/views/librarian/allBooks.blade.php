@@ -22,8 +22,12 @@
             <td>{{$book->kategorija}}</td>
             <td>{{$book->stampara}}</td>
             <td>@if($book->status=='SLOBODNA')
-                 <h6 class="border border-success text-success">Slobodna</h6>
-                 <a href="/reserveBook/{{$book->id}}" class="btn btn-success">Rezerviši</a>
+                 <h6 class="border border-success text-success w-50 m-auto">Slobodna</h6>
+                 @if (count($book->usersReservation)>0)
+                    <p class="border bg-dark border-warning text-warning w-75 mt-1 m-auto">Knjiga je rezervisana</p>
+                 @else
+                    <a href="/reserveBook/{{$book->id}}" class="btn btn-success mt-1">Rezerviši</a>
+                 @endif
                 @else 
                  <h6 class="border border-danger text-danger">Izdata</h6>
                 @endif
@@ -42,6 +46,6 @@
     </div>
 </div>
 @else 
-  <div class="mb-5 text-center text-white-50 bg-secondary"><h1><i><b>Nema korisnika</b></i></h1></div>
+  <div class="mb-5 text-center text-white-50 bg-secondary"><h1><i><b>Nema knjiga</b></i></h1></div>
 @endif
 @endsection
