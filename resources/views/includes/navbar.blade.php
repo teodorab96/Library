@@ -57,9 +57,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/allUsers">
-                                Svi korisnici
-                            </a>
+                            <a class="dropdown-item" href="/allUsers">Svi korisnici</a>
                             <a class="dropdown-item" href="/requestBook">Zahtjevi za iznajmljivanje</a>
                             <a class="dropdown-item" href="/allBooks">Sve knjige</a>
                             <a class="dropdown-item" href="/addBook">Dodaj novu knjigu</a>
@@ -79,16 +77,14 @@
                     @if(Auth::user()->type=='admin')
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }}
+                            {{Auth::user()->name}}
                         </a>
-
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/allUsers">Svi korisnici</a>
                             <a class="dropdown-item" href="/addUser">Dodaj novog zaposlenog</a>
                             <a class="dropdown-item" href="/requestBook">Zahtjevi za iznajmljivanje</a>
                             <a class="dropdown-item" href="/allBooks">Sve knjige</a>
                             <a class="dropdown-item" href="/addBook">Dodaj novu knjigu</a>
-                            <a class="dropdown-item" href="/reserveForUser">Unesi rezervaciju za korisnika</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();

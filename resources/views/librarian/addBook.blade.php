@@ -4,7 +4,7 @@
 <div class="container w-50 text-center">
     <form method='post' action="/addBook">
         @csrf
-        <div class="form-group">
+        <div class="form-group"> 
             <label for="naziv">Naziv knjige:</label>
             <input id="naziv" type="text" class="form-control text-center @error('naslov') is-invalid @enderror"  name="naslov">
           </div>
@@ -24,7 +24,7 @@
             <label for="stampara">Štampara:</label>
             <input id="stampara" type="text" class="form-control text-center @error('stampara') is-invalid @enderror"  name="stampara">
           </div>
-        <button type="submit" class="btn btn-warning" name="submit">Submit</button>
+        <button type="submit" class="btn btn-warning" name="submit">Dodaj knjigu</button>
       </form>
 </div>
 

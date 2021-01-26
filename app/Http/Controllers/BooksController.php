@@ -18,7 +18,7 @@ class BooksController extends Controller
     public function rent($id){
         $book = Book::find($id);
         if($book->status =='SLOBODNA'){
-            $dateNow = Carbon::today();
+            $dateNow = Carbon::now();
             $rentDate = $dateNow->addDays(30);
             DB::table('rent_books')->insert([
                 'user_id' => auth()->user()->id,

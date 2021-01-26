@@ -6,6 +6,11 @@
     @if(count($books)>0)
     <div class="row">
         @foreach ($books as $book)
+            @foreach ($book->users as $item)
+                @if ($item->pivot->approved)
+                    
+                @endif
+            @endforeach
             <div class="col-4 mb-3">
                 <div class="card text-center container">
                     <div class="card-header">

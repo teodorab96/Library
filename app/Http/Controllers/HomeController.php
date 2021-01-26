@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -20,9 +21,7 @@ class HomeController extends Controller
     }
  
     /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * Pocetna strana nakon login-a
      */
     public function index()
     {
@@ -40,6 +39,33 @@ class HomeController extends Controller
         }
         else{
             return view('pages.index');
+        }
+    }
+    /**Prikaz stane za kreiranje korisnika  */
+    public function addUser(){
+        return view('admin.addUser');
+    }
+    /**Dodavanje korisnika u bazu */
+    public function storeUser(Request $request)
+    {
+        if($request->method()=="POST"){
+        $this->validate($request,[
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|confirmed',
+            'type' => 'required',
+        ]);
+        $user = new User;
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = $request->input('password');
+        $user->type = $request->input('type');
+        $user->approved_at = Carbon::now();
+        $user->save();
+        return redirect('/addUser')->with('success','Korisnik uspješno dodat');
+        }
+        else{
+            return redirect('/addUser')->with('error','Greška prilikom dodavanja korisnika u bazu');
         }
     }
 }
