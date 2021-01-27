@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 
 class HomeController extends Controller
@@ -30,11 +31,19 @@ class HomeController extends Controller
         $userApproved = $userInfo->approved_at;
         if($usertype=='user' && $userApproved!=NULL){
             return view('pages.index');
+
         }
         else if($usertype=='user' && $userApproved==NULL){
             Auth::logout();
             Session::invalidate();    
             Session::regenerateToken();
+
+        //Slanje notifikacije
+            $allWorkers=User::where('type','librar') ->orWhere('type', 'admin');
+            foreach($allWorkers as $worker){
+                $worker->notify(new NewUser(auth()->user()));
+            }
+
             return view('waitingForAppr');
         }
         else{
@@ -58,7 +67,7 @@ class HomeController extends Controller
         $user = new User;
         $user->name = $request->input('name');
         $user->email = $request->input('email');
-        $user->password = $request->input('password');
+        $user->password = Hash::make($request->input('password'));
         $user->type = $request->input('type');
         $user->approved_at = Carbon::now();
         $user->save();

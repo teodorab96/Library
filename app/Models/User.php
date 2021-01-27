@@ -52,4 +52,12 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Book::class,'reservations','user_id','book_id');
     }
+    public function routeNotificationForMail($notification)
+    {
+        // Return email address only...
+        return $this->email_address;
+
+        // Return email address and name...
+        return [$this->email_address => $this->name];
+    }
 }

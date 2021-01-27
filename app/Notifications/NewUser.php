@@ -11,14 +11,16 @@ class NewUser extends Notification
 {
     use Queueable;
 
+    public $user;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -41,8 +43,9 @@ class NewUser extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
+                    ->from($this->user->email,$this->user->name)
+                    ->line('New user is registered')
+                    ->action('View all users', route('librarian.allUsers'))
                     ->line('Thank you for using our application!');
     }
 
